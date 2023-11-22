@@ -1,0 +1,134 @@
+/home/codespace/.python/current/bin/python3 /workspaces/Week-5---Lab-submission/tests.py
+@linusllove ➜ /workspaces/Week-5---Lab-submission (main) $ /home/codespace/.python/current/bin/python3 /workspaces/Week-5---Lab-submission/tests.py
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+@linusllove ➜ /workspaces/Week-5---Lab-submission (main) $ /home/codespace/.python/current/bin/python3 /workspaces/Week-5---Lab-submission/tests.py
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+@linusllove ➜ /workspaces/Week-5---Lab-submission (main) $ /home/codespace/.python/current/bin/python3 /workspaces/Week-5---Lab-submission/realtest.py
+None
+@linusllove ➜ /workspaces/Week-5---Lab-submission (main) $ /home/codespace/.python/current/bin/python3 /workspaces/Week-5---Lab-submission/realtest.py
+None
+None
+@linusllove ➜ /workspaces/Week-5---Lab-submission (main) $ /home/codespace/.python/current/bin/python3 /workspaces/Week-5---Lab-submission/realtest.py
+None
+None
+@linusllove ➜ /workspaces/Week-5---Lab-submission (main) $ /home/codespace/.python/current/bin/python3 /workspaces/Week-5---Lab-submission/realtest.py
+None
+None
+@linusllove ➜ /workspaces/Week-5---Lab-submission (main) $ /home/codespace/.python/current/bin/python3 /workspaces/Week-5---Lab-submission/realtest.py
+None
+X
+@linusllove ➜ /workspaces/Week-5---Lab-submission (main) $ 
+
+@linusllove ➜ /workspaces/Week-5---Lab-submission (main) $ /home/codespace/.python/current/bin/python3 /workspaces/Week-5---Lab-submission/realtest.py
+  File "/workspaces/Week-5---Lab-submission/realtest.py", line 12
+    git status
+        ^^^^^^
+SyntaxError: invalid syntax
+@linusllove ➜ /workspaces/Week-5---Lab-submission (main) $ 
+@linusllove ➜ /workspaces/Week-5---Lab-submission (main) $ 
+@linusllove ➜ /workspaces/Week-5---Lab-submission (main) $ 
+@linusllove ➜ /workspaces/Week-5---Lab-submission (main) $  git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Logs
+        __pycache__/
+        realtest.py
+
+nothing added to commit but untracked files present (use "git add" to track)
+@linusllove ➜ /workspaces/Week-5---Lab-submission (main) $ 
+@linusllove ➜ /workspaces/Week-5---Lab-submission (main) $ add realtesgit
+bash: add: command not found
+@linusllove ➜ /workspaces/Week-5---Lab-submission (main) $ git add realtest.py
+@linusllove ➜ /workspaces/Week-5---Lab-submission (main) $ git add realtest.pygit add realtest.py
+fatal: pathspec 'realtest.pygit' did not match any files
+@linusllove ➜ /workspaces/Week-5---Lab-submission (main) $ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   realtest.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Logs
+        __pycache__/
+
+@linusllove ➜ /workspaces/Week-5---Lab-submission (main) $ git commit - m"add realtest"
+error: pathspec '-' did not match any file(s) known to git
+error: pathspec 'madd realtest' did not match any file(s) known to git
+@linusllove ➜ /workspaces/Week-5---Lab-submission (main) $ git commit -m "add realtest"
+[main 7c5fa0e] add realtest
+ 1 file changed, 10 insertions(+)
+ create mode 100644 realtest.py
+@linusllove ➜ /workspaces/Week-5---Lab-submission (main) $ git log
+commit 7c5fa0ec5dae81f363b55d8547a57b1f4d53c39c (HEAD -> main)
+commit 7c5fa0ec5dae81f363b55d8547a57b1f4d53c39c (HEAD -> main)
+Author: Tianyi Mu <143496252+linusllove@users.noreply.github.com>
+Date:   Wed Nov 8 02:38:57 2023 +0000
+
+    add realtest
+
+commit a0991bd5b8edf99125ae0ed269c3569208589a78 (origin/main, origin/HEAD)
+Author: Tianyi Mu <143496252+linusllove@users.noreply.github.com>
+Date:   Tue Oct 31 17:29:16 2023 -0700
+
+    Add files via upload
+
+commit fc86ff935e13c87b0447eecd176a36c1602430eb
+Author: Tianyi Mu <143496252+linusllove@users.noreply.github.com>
+Date:   Tue Oct 31 17:28:35 2023 -0700
+
+    Add files via upload
+
+@linusllove ➜ /workspaces/Week-5---Lab-submission (main) $ git push
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 2 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 402 bytes | 402.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/linusllove/Week-5---Lab-submission
+   a0991bd..7c5fa0e  main -> main
+@linusllove ➜ /workspaces/Week-5---Lab-submission (main) $ 
+
+Player's turn: X
+[None, None, None]
+[None, None, None]
+[None, None, None]
+Enter the position of (x,y), split with comma: 0,0
+None
+Player's turn: O
+['X', None, None]
+[None, None, None]
+[None, None, None]
+Enter the position of (x,y), split with comma: 1,0
+None
+Player's turn: X
+['X', None, None]
+['O', None, None]
+[None, None, None]
+Enter the position of (x,y), split with comma: 0,1
+None
+Player's turn: O
+['X', 'X', None]
+['O', None, None]
+[None, None, None]
+Enter the position of (x,y), split with comma: 2,1
+None
+
+
+
+
