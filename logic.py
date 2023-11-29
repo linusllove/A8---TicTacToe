@@ -144,7 +144,7 @@ def print_board_to_file(board, file):
             f.write(f"{i} {' '.join(print_row)}\n")
 
 def main():
-    logs_directory = 'logs'
+    logs_directory = './logs'
     os.makedirs(logs_directory, exist_ok=True)
     database_file = os.path.join(logs_directory, 'winners.csv')
     board_file = os.path.join(logs_directory, 'game_board.txt')
