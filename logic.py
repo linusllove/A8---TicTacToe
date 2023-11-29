@@ -88,6 +88,7 @@ class TicTacToeGame:
         self.current_player = player1
         self.other_player = player2
         self.database_file = database_file
+        self.log_data = []  # Additional data to be logged
 
     def play_turn(self):
         x, y = self.current_player.make_move(self.board)
@@ -96,6 +97,13 @@ class TicTacToeGame:
             raise ValueError(f"The spot ({x}, {y}) is already taken.")
 
         self.board[x][y] = self.current_player.marker
+
+        # Log the move
+        self.log_data.append({
+            'player': self.current_player.marker,
+            'move': (x, y)
+        })
+
         self.current_player, self.other_player = self.other_player, self.current_player
 
     def get_winner(self):
@@ -123,12 +131,22 @@ class TicTacToeGame:
                 writer = csv.writer(file)
                 writer.writerow([winner])
 
+            # Log additional data
+            self.log_data[-1]['winner'] = winner
+
+    def save_log(self, log_file):
+        with open(log_file, mode='w', newline='') as file:
+            writer = csv.DictWriter(file, fieldnames=['player', 'move', 'winner'])
+            writer.writeheader()
+            writer.writerows(self.log_data)
+
 class Player:
-    def __init__(self, marker):
+    def __init__(self, marker, name):
         self.marker = marker
+        self.name = name
 
     def make_move(self, board):
-        x, y = map(int, input(f"Enter the position of (x,y) for {self.marker}, split with comma: ").split(","))
+        x, y = map(int, input(f"{self.name}, enter the position of (x,y) for {self.marker}, split with comma: ").split(","))
         return x, y
 
 class Bot(Player):
@@ -144,13 +162,14 @@ def print_board_to_file(board, file):
             f.write(f"{i} {' '.join(print_row)}\n")
 
 def main():
-    logs_directory = './logs'
+    logs_directory = 'logs'
     os.makedirs(logs_directory, exist_ok=True)
     database_file = os.path.join(logs_directory, 'winners.csv')
+    log_file = os.path.join(logs_directory, 'game_log.csv')
     board_file = os.path.join(logs_directory, 'game_board.txt')
 
-    player1 = Player('X')
-    player2 = Bot('O')
+    player1 = Player('X', 'Player 1')
+    player2 = Bot('O', 'Bot 1')
     game = TicTacToeGame(player1, player2, database_file)
 
     while True:
@@ -159,11 +178,16 @@ def main():
         winner = game.get_winner()
         if winner:
             game.record_winner(winner)
+            game.save_log(log_file)
             print_board_to_file(game.board, board_file)
             with open(board_file, 'a') as f:
-                f.write(f"Player {winner} wins!\n")
+                f.write(f"{player1.name}: {len([data['winner'] for data in game.log_data if data['winner'] == player1.marker])} wins\n")
+                f.write(f"{player2.name}: {len([data['winner'] for data in game.log_data if data['winner'] == player2.marker])} wins\n")
+                f.write(f"Total Games: {len(game.log_data)}\n")
+                f.write(f"Draws: {len([data['winner'] for data in game.log_data if data['winner'] is None])}\n")
             break
         if game.is_draw():
+            game.save_log(log_file)
             print_board_to_file(game.board, board_file)
             with open(board_file, 'a') as f:
                 f.write("It's a draw!\n")
@@ -171,4 +195,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
