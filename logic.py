@@ -136,34 +136,40 @@ class Bot(Player):
         empty_spots = [(x, y) for x in range(3) for y in range(3) if board[x][y] is None]
         return random.choice(empty_spots) if empty_spots else (0, 0)
 
-def print_board(board):
-    print("  0 1 2")
-    for i, row in enumerate(board):
-        print_row = [cell if cell is not None else ' ' for cell in row]
-        print(f"{i} {' '.join(print_row)}")
+def print_board_to_file(board, file):
+    with open(file, 'a') as f:
+        f.write("  0 1 2\n")
+        for i, row in enumerate(board):
+            print_row = [cell if cell is not None else ' ' for cell in row]
+            f.write(f"{i} {' '.join(print_row)}\n")
 
+# Modify your main function to use the new print_board_to_file function
 def main():
     logs_directory = 'logs'
     os.makedirs(logs_directory, exist_ok=True)
     database_file = os.path.join(logs_directory, 'winners.csv')
+    board_file = os.path.join(logs_directory, 'game_board.txt')
 
     player1 = Player('X')
     player2 = Bot('O')
     game = TicTacToeGame(player1, player2, database_file)
 
     while True:
-        print_board(game.board)
+        print_board_to_file(game.board, board_file)
         game.play_turn()
         winner = game.get_winner()
         if winner:
             game.record_winner(winner)
-            print_board(game.board)
-            print(f"Player {winner} wins!")
+            print_board_to_file(game.board, board_file)
+            with open(board_file, 'a') as f:
+                f.write(f"Player {winner} wins!\n")
             break
         if game.is_draw():
-            print_board(game.board)
-            print("It's a draw!")
+            print_board_to_file(game.board, board_file)
+            with open(board_file, 'a') as f:
+                f.write("It's a draw!\n")
             break
 
 if __name__ == '__main__':
     main()
+
