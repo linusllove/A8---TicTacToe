@@ -143,7 +143,6 @@ def print_board_to_file(board, file):
             print_row = [cell if cell is not None else ' ' for cell in row]
             f.write(f"{i} {' '.join(print_row)}\n")
 
-# Modify your main function to use the new print_board_to_file function
 def main():
     logs_directory = 'logs'
     os.makedirs(logs_directory, exist_ok=True)
